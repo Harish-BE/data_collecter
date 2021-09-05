@@ -20,10 +20,12 @@ def login():
 def check():
     username=request.form['username']
     password=request.form['password']
-    username_ch=db.userDB.find_one({"username":username})
-    if username_ch:
-        if(username_ch["username"]==username and username_ch["password"]==password):
-            return render_template('database.html')
+    user_db=db.userDB.find_one({"username":username})
+    if user_db:
+        if(user_db["username"]==username and user_db["password"]==password):
+            return redirect(url_for('user', username=username))
+        else:
+            return "Incorrect username or password"
     else:
         return "Incorrect username or password"
 
@@ -39,3 +41,21 @@ def register_user():
     password=request.form['password']
     db.userDB.insert_one({"username":username,"password":password})
     return redirect("/")
+
+#################################################################################
+
+@app.route('/user/<username>')
+def user(username):
+    ch=db.userDB.find_one({"username":username})
+    if(ch['username']==username):
+        return render_template("database.html", username=username)
+    else:
+        db.userDB.insert_one({"username":username})
+        return render_template('database.html',username=username)
+
+@app.route('/database',methods=['POST'])
+def database():
+    data=request.form['data']
+    username=request.form['username']
+    db.userDB.update({"username":username },{"$set" : {"data":data}})
+    return "saved"

@@ -39,7 +39,7 @@ def register():
 def register_user():
     username=request.form['username']
     password=request.form['password']
-    db.userDB.insert_one({"username":username,"password":password})
+    db.userDB.insert_one({"username":username,"password":password, "data":""})
     return redirect("/")
 
 #################################################################################
@@ -48,10 +48,10 @@ def register_user():
 def user(username):
     ch=db.userDB.find_one({"username":username})
     if(ch['username']==username):
-        return render_template("database.html", username=username)
+        return render_template("database.html", username=username, text=ch["data"])
     else:
         db.userDB.insert_one({"username":username})
-        return render_template('database.html',username=username)
+        return render_template('database.html',username=username, text=ch["data"])
 
 @app.route('/database',methods=['POST'])
 def database():

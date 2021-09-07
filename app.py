@@ -20,8 +20,8 @@ def render():
 @app.route("/login")
 def login():
     return render_template("login.html")
-@app.route("/check",methods=['POST'])
-def check():
+@app.route("/database",methods=['POST'])
+def database():
     username=request.form['username']
     password=request.form['password']
     user_db=db.userDB.find_one({"username":username})
@@ -47,8 +47,8 @@ def register_user():
 
 #################################################################################
 
-@app.route('/database',methods=['POST'])
-def database():
+@app.route('/save',methods=['POST'])
+def save():
     data=request.form['data']
     username=request.form['username']
     db.userDB.update({"username":username },{"$set" : {"data":data}})

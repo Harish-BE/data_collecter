@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <form class="" action="/database" method="post">
-      <textarea name="data" rows="8" cols="80">{{text}}</textarea>
+{% extends "base.html" %}
+{% block content%}
+    <form class="" action="/save" method="post">
+      <textarea name="data" rows="30" cols="200">{{text}}</textarea>
       <input type="hidden" name = "username" value={{username}}>
-      <button type="submit" name="button">save</button>
+      <button type="submit"class="btn btn-primary btn-lg btn-block center" name="button">save</button>
     </form>
 
-  </body>
-</html>
+{% endblock %}

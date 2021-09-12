@@ -29,9 +29,9 @@ def database():
         if(user_db["username"]==username and user_db["password"]==password):
             return render_template("database.html", username=username, text=user_db["data"])
         else:
-            return "Incorrect username or password"
+            return render_template("login.html",invalid="Incorrect username or password")
     else:
-        return "Incorrect username or password"
+        return render_template("login.html",invalid="Incorrect username or password")
 
 ###################################################################################
 @app.route('/register')

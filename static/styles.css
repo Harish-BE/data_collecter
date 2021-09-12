@@ -1,5 +1,15 @@
+html{
+  font-family: 'Basic', sans-serif;
+}
+
+h6{
+  color:red;
+}
 .center {
   margin: auto;
   width: 20%;
   padding: 10px;
+}
+.middle{
+  padding-top: 10%;
 }

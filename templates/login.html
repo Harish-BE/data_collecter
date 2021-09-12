@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% block content%}
-    <form class="form-signin center" action="/database" method="post">
-    <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+
+    <form class="form-signin center middle" action="/database" method="post">
+    <h2 class="h3 mb-3 font-weight-normal">Log in</h2>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required="" autofocus="">
-    <input type="password" name="password" class="form-control" placeholder="Password" required autofocus ><br>
+    <input type="password" name="password" class="form-control" placeholder="Password" required autofocus >
+    {%if invalid%}
+    <h6 class="font-weight-normal">{{invalid}}</h6>
+    {%endif%}
     <button type="submit" class="btn btn-lg btn-primary btn-block" name="submit">login</button>
   </form>
 
